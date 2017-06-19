@@ -13,7 +13,7 @@ export default () => {
                     </Link>
                 </div>
 
-                <div className="collapse navbar-collapse">
+                <div className="collapse navbar-collapse" id="colapsebleNavigation">
                     <ul className="nav navbar-nav">
                         <li><Link to="/">About</Link></li>
                         <li><Link to="create-meeting">Create New Meeting</Link></li>

@@ -35,8 +35,8 @@ class SignUpForm extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-2"></div>
-                <div className="col-md-8">
+                <div className="col-md-2 col-sm-2 col-xs-2"></div>
+                <div className="col-md-8 col-sm-8 col-xs-8">
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <lable for="signUpEmail" className="FormLabel">Email</lable>
@@ -74,7 +74,7 @@ class SignUpForm extends Component {
                     </form>
                 </div>
                 
-                <div className="col-md-2"></div>
+                <div className="col-md-2 col-sm-2 col-xs-2"></div>
             
             </div>
         );
