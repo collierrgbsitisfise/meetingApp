@@ -1,4 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/meetings_db');
 
 const Schema = mongoose.Schema;
 

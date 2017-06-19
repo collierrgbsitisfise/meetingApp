@@ -6,18 +6,20 @@ class SignUpForm extends Component {
     
     constructor (props) {
         super(props);
-        
+        console.log(this.props);
         this.state = {
             email: '',
             userName: '',
             signUpPassword: '',
             signUpRepeatPassword: '', 
             ifError: false,
-            ifLoaded: false
+            ifLoaded: false,
+            errorMsg: ''
         }
         
         this.onChangeInput = this.onChangeInput.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.ifErrorValidtor = this.ifErrorValidtor.bind(this);
     
     }
     
@@ -29,7 +31,29 @@ class SignUpForm extends Component {
 
     onSubmit (e) {
         e.preventDefault();
-        console.log(this.state)
+        
+        this.setState({errorMsg: '', ifError: false});
+        
+        if (this.ifErrorValidtor(this.state)) {
+            this.setState({errorMsg: 'Verify inputs , somthing wrong!!!', ifError: true});
+            return;
+        }
+        
+        this.setState({ifLoaded: true});
+        
+        this.props.userSignUpRequest(this.state)
+            .then(succes => {
+                console.log(succes);
+                this.setState({ifLoaded: false});
+            }).catch(err => {
+                console.log(err);
+                this.setState({ifLoaded: false});
+            })
+    }
+    
+    
+    ifErrorValidtor (validObj) {
+        return (!validObj.signUpPassword || (validObj.signUpPassword !== validObj.signUpRepeatPassword)) ? true : false;
     }
     
     render() {
@@ -69,8 +93,8 @@ class SignUpForm extends Component {
                                    value={this.state.signUpRepeatPassword}
                                    onChange={this.onChangeInput}/>
                         </div>
-                        
-                        <button type="submit" className="btn btn-primary SignUpButton">Sign Up</button>
+                        {this.state.ifError && <div className="alert alert-danger">{this.state.errorMsg}</div>}  
+                        <button disabled={this.state.ifLoaded} type="submit" className="btn btn-primary SignUpButton">Sign Up</button>
                     </form>
                 </div>
                 

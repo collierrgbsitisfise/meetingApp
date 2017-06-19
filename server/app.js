@@ -1,6 +1,15 @@
 import express from 'express';
+import bodyParser from  'body-parser';
+import UserCtrl from './controllers/user.ctrl';
 
 const app = express();
 
-app.get('/sosoliushka', (req, res) => res.send('o(^_^)o'));
+/*Use Midleware*/
+app.use(bodyParser.json());
+
+/*Routes*/
+app.post('/signup', UserCtrl.signUpNewUserHandler);
+
+
+/*Start server*/
 app.listen(8080, () => console.log('server successfuly do it ^_^'));
