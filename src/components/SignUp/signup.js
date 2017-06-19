@@ -1,10 +1,12 @@
 import React from 'react';
 
+import SignUpForm from './Form/SignUpForm';
+
 class SignUp extends React.Component {
     render () {
         return (
             <div className="jumbotron">
-                <h1>Hello From SignUp</h1>
+                <SignUpForm/>
             </div>
         )
     }

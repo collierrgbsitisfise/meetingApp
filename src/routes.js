@@ -13,7 +13,7 @@ export default (
         <IndexRoute component={About} />
         <Route path="create-meeting" component={CreateMeeting}/>
         <Route path="find-meeting" component={FindMeeting}/>
-        <Route path="signin" component={SignUp}/>
-        <Route path="signup" component={SignIn}/>
+        <Route path="signin" component={SignIn}/>
+        <Route path="signup" component={SignUp}/>
     </Route>
 )
