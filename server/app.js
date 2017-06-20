@@ -8,7 +8,8 @@ const app = express();
 app.use(bodyParser.json());
 
 /*Routes*/
-app.post('/signup', UserCtrl.signUpNewUserHandler);
+app.post('/sende-email-confirm', UserCtrl.SendEmailConfirmSingUp);
+app.post('/create-acc', UserCtrl.createAccountHandler);
 
 
 /*Start server*/

@@ -8,6 +8,8 @@ import SignIn from './components/SignIn/signin';
 import CreateMeeting from './components/new-meeting/newMeeting';
 import FindMeeting from './components/findMeeting/findMeeting';
 import ConfirmEmail from './components/confirmEmail/confirm.component';
+import CreateNew from './components/confirmEmail/create.new.component';
+
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={About} />
@@ -16,5 +18,6 @@ export default (
         <Route path="signin" component={SignIn}/>
         <Route path="signup" component={SignUp}/>
         <Route path="confirm-email/:emailName" component={ConfirmEmail}></Route>
+        <Route path="succes-confirm/:token" component={CreateNew}></Route>
     </Route>
 )

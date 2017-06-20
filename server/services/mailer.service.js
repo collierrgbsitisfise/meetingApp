@@ -1,6 +1,9 @@
 import { MailerCongif } from './../configs/mailer.config';
 import smtpTransport from 'nodemailer-smtp-transport';
 import nodemailer from 'nodemailer';
+import JWT from 'jsonwebtoken';
+import { S_K } from './../configs/secret.key';
+import {PORT , HOST} from './../configs/aplication.config';
 
 const transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
@@ -16,25 +19,27 @@ const transporter = nodemailer.createTransport(smtpTransport({
  * @param {String} subject 
  * @param {String} toUser 
  * @param {String} text 
+ * @param {Object} allUserInfo
  */
-const sendSignUpToken = (subject, toUser, text) => {
-    console.log('I am in sendSignUptoken');
-    console.log(toUser)
+const sendSignUpToken = (subject, toUser, text, allUserInfo) => {
+
     return new Promise((resolve, reject) => {
+        
+        let newToken = JWT.sign(allUserInfo, S_K, {
+            expiresIn: 60 * 20
+        });
         
         let mailOptions = {
             from: MailerCongif.user,
             to: toUser,
             subject: subject,
-            text: text
+            text: `${text} http://${HOST}:${PORT}/#/succes-confirm/${newToken}`
         }
         
         transporter.sendMail(mailOptions, (err, info) => {
             
             if (err) reject(err);
 
-            console.log('it is ok !!!!');
-            console.log(info);
             resolve(info);
         
         });

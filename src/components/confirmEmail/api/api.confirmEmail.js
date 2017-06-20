@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function signUpNewUser (userData) {
+export function addNewUser (userData) {
     return axios({
         method: 'post',
-        url: '/sende-email-confirm',
+        url: '/create-acc',
         responseType: 'json',
         data: userData
     })
