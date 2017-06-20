@@ -1,15 +1,20 @@
 import { User } from './../models/user.model';
+import {sendSignUpToken} from './../services/mailer.service';
 import base64 from 'base-64';
-module.exports.signUpNewUserHandler = function signUpNewUserHandler (req, res) {
 
+/**
+ * singUp new User Handler
+ *@param {Object},
+ *@param {Fucntion}
+ */
+module.exports.signUpNewUserHandler = function signUpNewUserHandler (req, res) {
+    console.log('I am in sign Up');
     VerifyIfExistAlready(req.body)
         .then(data => {
-            return data;        
-        })
-        .then(data => {
-            addNewUser(data)
-                .then(succes => {
-                    res.send(succes);
+            console.log();
+            sendSignUpToken('SignUp on meetings -_o',data.email,'This is token muitherfucker')
+                .then(data => {
+                    res.status(200).send(data);
                 })
                 .catch(err => {
                     res.status(403).send(err);
@@ -21,7 +26,7 @@ module.exports.signUpNewUserHandler = function signUpNewUserHandler (req, res) {
 } 
 
 /**
- *Verify if user with 'this' name or email already exists
+ *Verify if user with 'this' name or email already exists, referene to {signUpNewUserHandler}
  *@param {Object}
  *@return {Promise}
  */
@@ -40,7 +45,7 @@ const VerifyIfExistAlready = (body) => {
 };
 
 /**
- *Add new user in database, (and hash user password using base64)
+ *Add new user in database, (and hash user password using base64) referene to {signUpNewUserHandler}
  *@param {Object}
  *@return {Promise}
  */

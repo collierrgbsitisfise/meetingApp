@@ -35,7 +35,12 @@ class SignUpForm extends Component {
         this.setState({errorMsg: '', ifError: false});
         
         if (this.ifErrorValidtor(this.state)) {
-            this.setState({errorMsg: 'Verify inputs , somthing wrong!!!', ifError: true});
+            this.setState({
+                errorMsg: 'Verify inputs , somthing wrong!!!',
+                ifError: true,
+                signUpPassword: '',
+                signUpRepeatPassword: ''
+            });
             return;
         }
         
@@ -47,8 +52,14 @@ class SignUpForm extends Component {
                 this.setState({ifLoaded: false});
             }).catch(err => {
                 console.log(err);
-                this.setState({ifLoaded: false});
-            })
+                this.setState({
+                    ifLoaded: false,
+                    errorMsg: 'Verify inputs , somthing wrong!!!',
+                    ifError: true,
+                    signUpPassword: '',
+                    signUpRepeatPassword: ''
+                });
+            });
     }
     
     

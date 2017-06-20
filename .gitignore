@@ -12,6 +12,9 @@
 # production
 /build
 
+# mailer config
+/server/configs/mailer.config.js
+
 # misc
 .DS_Store
 .env.local
