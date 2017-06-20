@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 /*Routes*/
 app.post('/sende-email-confirm', UserCtrl.SendEmailConfirmSingUp);
 app.post('/create-acc', UserCtrl.createAccountHandler);
-
+app.post('/signin-user', UserCtrl.signInUserHandler);
 
 /*Start server*/
 app.listen(8080, () => console.log('server successfuly do it ^_^'));

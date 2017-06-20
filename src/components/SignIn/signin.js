@@ -1,13 +1,17 @@
 import React from 'react';
 
+import SignInForm from './Form/signInForm';
+import { connect } from 'react-redux';
+import { userSignInRequest } from './actions/signin.action';
+
 class SignIn extends React.Component {
     render () {
         return (
             <div className="jumbotron">
-                <h1>Hello From SignIn</h1>
+                <SignInForm userSignInRequest={userSignInRequest} />
             </div>
-        )
+        );
     }
 }
 
-export default SignIn;
+export default connect(null, { userSignInRequest } )(SignIn);

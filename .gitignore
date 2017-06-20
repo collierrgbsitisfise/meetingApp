@@ -12,6 +12,9 @@
 # production
 /build
 
+# vscode config
+/.vscode/
+
 # mailer config
 /server/configs/mailer.config.js
 
