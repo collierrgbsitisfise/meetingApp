@@ -11,7 +11,6 @@ module.exports.signUpNewUserHandler = function signUpNewUserHandler (req, res) {
     console.log('I am in sign Up');
     VerifyIfExistAlready(req.body)
         .then(data => {
-            console.log();
             sendSignUpToken('SignUp on meetings -_o',data.email,'This is token muitherfucker')
                 .then(data => {
                     res.status(200).send(data);

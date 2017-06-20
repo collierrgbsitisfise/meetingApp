@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { hashHistory } from 'react-router';
 
 import "./FormStyles.css";
 
@@ -48,8 +49,8 @@ class SignUpForm extends Component {
         
         this.props.userSignUpRequest(this.state)
             .then(succes => {
-                console.log(succes);
                 this.setState({ifLoaded: false});
+                hashHistory.push(`confirm-email/${succes.data.accepted[0]}`);
             }).catch(err => {
                 console.log(err);
                 this.setState({
