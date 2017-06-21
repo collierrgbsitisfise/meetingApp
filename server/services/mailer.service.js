@@ -26,7 +26,7 @@ const sendSignUpToken = (subject, toUser, text, allUserInfo) => {
     return new Promise((resolve, reject) => {
         
         let newToken = JWT.sign(allUserInfo, S_K, {
-            expiresIn: 60 * 20
+            expiresIn: 60 * 2000
         });
         
         let mailOptions = {

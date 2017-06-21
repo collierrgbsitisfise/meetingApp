@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import NavigationBar from './NavigationBar';
+import NavigationBar from './components/Navigation/NavigationBar';
 
 class App extends Component {
   render() {

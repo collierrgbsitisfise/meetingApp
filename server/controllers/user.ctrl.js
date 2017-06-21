@@ -6,8 +6,8 @@ import { S_K } from './../configs/secret.key';
 
 /**
  * singUp new User Handler
- *@param {Object},
- *@param {Fucntion}
+ * @param {Object},
+ * @param {Fucntion}
  */
 module.exports.SendEmailConfirmSingUp = function SendEmailConfirmSingUp (req, res) {
     VerifyIfExistAlready(req.body)
@@ -26,9 +26,9 @@ module.exports.SendEmailConfirmSingUp = function SendEmailConfirmSingUp (req, re
 } 
 
 /**
- *Verify if user with 'this' name or email already exists, referene to {signUpNewUserHandler}
- *@param {Object}
- *@return {Promise.<Object>}
+ * Verify if user with 'this' name or email already exists, referene to {signUpNewUserHandler}
+ * @param {Object}
+ * @return {Promise.<Object>}
  */
 const VerifyIfExistAlready = (body) => {
     return new Promise((resolve, reject) => {
@@ -45,9 +45,9 @@ const VerifyIfExistAlready = (body) => {
 };
 
 /**
- *Parse token with info , add user in db
- *@param req.body.token {String}
- *@return 
+ * Parse token with info , add user in db
+ * @param req.body.token {String}
+ * @return 
  */
 module.exports.createAccountHandler = function createAccountHandler (req, res) {
  
@@ -72,10 +72,10 @@ module.exports.createAccountHandler = function createAccountHandler (req, res) {
 }
 
 /**
- *Add new user in database, (and hash user password using base64) referene to {signUpNewUserHandler}
- *@param {Object}
- *@return {Promise}
- *@return {Promise.<Object>}
+ *A dd new user in database, (and hash user password using base64) referene to {signUpNewUserHandler}
+ * @param {Object}
+ * @return {Promise}
+ * @return {Promise.<Object>}
  */
 const addNewUser = (data) => {
     return new Promise((resolve, reject) => {
