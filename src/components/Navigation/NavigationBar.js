@@ -6,6 +6,7 @@ import { verifyTokenRequest } from './actions/navigationbar.actions';
 class NavigationBar extends React.Component {
     
     constructor (props) {
+        
         super(props);
         
         this.state = {
@@ -22,11 +23,9 @@ class NavigationBar extends React.Component {
         verifyTokenRequest({
             token: localStorage.getItem('token')
         }).then(succes => {
-            console.log('I am in true');
             this.setState({isValidToken: true});
         })
         .catch(err => {
-            console.log('I am in false')
             this.setState({isValidToken: false});
         })
     
