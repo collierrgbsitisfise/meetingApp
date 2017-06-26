@@ -5,6 +5,9 @@ import GoogleMapReact from 'google-map-react';
 
 import LocationGallery from './GallleryLocation/gallery';
 
+import { connect } from 'react-redux';
+import { getPhotoForLocalityAction } from './actions/actions.newmeeting';
+
 class CreateMeeting extends React.Component {
     
     constructor(props) {
@@ -72,6 +75,7 @@ class CreateMeeting extends React.Component {
                                             style={{width: '100%'}}
                                             types={['address']}
                                             onPlaceSelected={(place) => {
+                                                getPhotoForLocalityAction({data: 'hello from componenet'});
                                                 console.log('it is selected place');
                                                 console.log(place);                                                
                                                 if (place.geometry) {
@@ -80,6 +84,23 @@ class CreateMeeting extends React.Component {
                                                             MeetingLat: place.geometry.location.lat(),
                                                             MeetingLog: place.geometry.location.lng(),
                                                             locationPhoto: place.photos || []
+                                                    }, () => {
+                                                        getPhotoForLocalityAction({
+                                                            lat: place.geometry.location.lat(),
+                                                            lng: place.geometry.location.lng(),
+                                                            radius: 500
+                                                        }).then(res => {
+                                                            console.log(' IT is ok Succes!!!');
+                                                            console.log(res.data);
+                                                            this.setState({
+                                                                locationPhoto: res.data.results.filter( item => {
+                                                                    return item.photos;
+                                                                })
+                                                            })
+                                                        }).catch(err => {
+                                                            console.log('Error!!!');
+                                                            console.log(err);
+                                                        })
                                                     });
 
                                                     return;                                                   
@@ -143,13 +164,11 @@ class CreateMeeting extends React.Component {
                 </div>
                 <div className="row">
                     {this.state.locationPhoto.length > 0 ? <h3 style={{color: '#6cb426'}}>Prewie Photo</h3> : ''}
-                    <div className="col-md-12 col-sm-12 col-xs-12">
-                        {this.state.locationPhoto.length > 0 ? <LocationGallery photos={this.state.locationPhoto}/> : ''}
-                    </div>
+                    {this.state.locationPhoto.length > 0 ? <LocationGallery photos={this.state.locationPhoto}/> : ''}
                 </div>
             </div>
         )
     }
 }
 
-export default CreateMeeting;
+export default connect(null, { getPhotoForLocalityAction } )(CreateMeeting);
