@@ -23,7 +23,7 @@ class LocationGallery extends Component {
             return <div className="col-md-4" key={item.photos[0].photo_reference}>
                         <div className="thumbnail card">
                             <img src={imgSrc} alt="Lights" style={{width: '300px', height: '300px'}}/>
-                            <div className="captionImg" style={{width: '200px', height: '400px'}}>
+                            <div className="captionImg" style={{width: 'auto', height: '200px'}}>
                                 <h3 className="captureCard">{item.name}</h3>
                                 <hr/>
                                 <p>{item.vicinity}</p>

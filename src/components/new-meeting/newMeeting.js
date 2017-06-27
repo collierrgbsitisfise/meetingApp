@@ -4,7 +4,7 @@ import Autocomplete from 'react-google-autocomplete';
 import GoogleMapReact from 'google-map-react';
 
 import LocationGallery from './GallleryLocation/gallery';
-
+import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { getPhotoForLocalityAction, addNewMeetingAction } from './actions/actions.newmeeting';
 
@@ -20,7 +20,8 @@ class CreateMeeting extends React.Component {
             MeetingLat: 27,
             MeetingLog: 48,
             MeetingDescription: '',
-            locationPhoto: []
+            locationPhoto: [],
+            isError: false
         }
 
         this.onChange = this.onChange.bind(this);
@@ -37,18 +38,20 @@ class CreateMeeting extends React.Component {
     } 
     
     onSubmitForm (e) {
+        this.setState({
+            isError: false
+        });
+        
         e.preventDefault();
-        console.log('this is FINAL STATE');
-        console.log(this.state);
 
         addNewMeetingAction(this.state)
             .then(success => {
-                console.log('succes added new meeting');
-                console.log(success);
+                hashHistory.push('/');
             })
             .catch(err => {
-                console.log('error with adding new meeting');
-                console.log(err);
+                this.setState({
+                    isError: true
+                });
             })
     }
     
@@ -155,6 +158,7 @@ class CreateMeeting extends React.Component {
                                         onChange={this.onChange}
                                         name="MeetingDescription" MeetingDescription/>
                             </div>
+                            {this.state.ifError && <div className="alert alert-danger">Sorry , we have internal errors</div>} 
                             <div className="form-group">
                                 <button type="button" className="btn btn-primary btn-lg btn-block SignUpButton" onClick={this.onSubmitForm}>Create New</button>                            
                             </div>
