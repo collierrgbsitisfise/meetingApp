@@ -15,3 +15,15 @@ export function getPhotoForLocality (requestParameters) {
     });
 
 }
+
+export function addNewMeeting (newMeetingData) {
+    return axios({
+        method: 'post',
+        url: '/meeting/add',
+        responseType: 'json',
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        data: newMeetingData,
+    })
+}

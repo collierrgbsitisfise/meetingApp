@@ -6,7 +6,7 @@ import GoogleMapReact from 'google-map-react';
 import LocationGallery from './GallleryLocation/gallery';
 
 import { connect } from 'react-redux';
-import { getPhotoForLocalityAction } from './actions/actions.newmeeting';
+import { getPhotoForLocalityAction, addNewMeetingAction } from './actions/actions.newmeeting';
 
 class CreateMeeting extends React.Component {
     
@@ -39,7 +39,17 @@ class CreateMeeting extends React.Component {
     onSubmitForm (e) {
         e.preventDefault();
         console.log('this is FINAL STATE');
-        console.log(this.state)
+        console.log(this.state);
+
+        addNewMeetingAction(this.state)
+            .then(success => {
+                console.log('succes added new meeting');
+                console.log(success);
+            })
+            .catch(err => {
+                console.log('error with adding new meeting');
+                console.log(err);
+            })
     }
     
     LocationsPhoto () {
@@ -60,7 +70,7 @@ class CreateMeeting extends React.Component {
                             </div>
                             
                             <div className="form-group">
-                                <lable for="MeetingDestination" className="FormLabel">Meeting Name</lable>
+                                <lable for="MeetingDestination" className="FormLabel">Meeting Destination</lable>
                                 <input type="text" className="form-control" id="MeetingDestination" placeholder="Meeting Destination..."
                                     value={this.state.MeetingDestination}
                                     onChange={this.onChange}
@@ -74,10 +84,7 @@ class CreateMeeting extends React.Component {
                                              placeholder="locality name..."
                                             style={{width: '100%'}}
                                             types={['address']}
-                                            onPlaceSelected={(place) => {
-                                                getPhotoForLocalityAction({data: 'hello from componenet'});
-                                                console.log('it is selected place');
-                                                console.log(place);                                                
+                                            onPlaceSelected={(place) => {                                               
                                                 if (place.geometry) {
                                                     this.setState({
                                                             Meetinglocality: place.formatted_address,
@@ -144,7 +151,9 @@ class CreateMeeting extends React.Component {
                                 <lable for="MeetingDescription" className="FormLabel">Meeting Name</lable>
                                 <textarea type="text" className="form-control" id="MeetingDescription" placeholder="Meeting Description..."
                                         rows="4"
-                                        name="MeetingDescription"/>
+                                        value={this.state.MeetingDescription}
+                                        onChange={this.onChange}
+                                        name="MeetingDescription" MeetingDescription/>
                             </div>
                             <div className="form-group">
                                 <button type="button" className="btn btn-primary btn-lg btn-block SignUpButton" onClick={this.onSubmitForm}>Create New</button>                            
@@ -171,4 +180,4 @@ class CreateMeeting extends React.Component {
     }
 }
 
-export default connect(null, { getPhotoForLocalityAction } )(CreateMeeting);
+export default connect(null, { getPhotoForLocalityAction , addNewMeetingAction } )(CreateMeeting);
