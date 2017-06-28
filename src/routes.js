@@ -9,10 +9,12 @@ import CreateMeeting from './components/new-meeting/newMeeting';
 import FindMeeting from './components/findMeeting/findMeeting';
 import ConfirmEmail from './components/confirmEmail/confirm.component';
 import CreateNew from './components/confirmEmail/create.new.component';
+import ProfileComponent from './components/profile/profile.component';
 
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={About} />
+        <Route path="my-profile" component={ProfileComponent}/>
         <Route path="create-meeting" component={CreateMeeting}/>
         <Route path="find-meeting" component={FindMeeting}/>
         <Route path="signin" component={SignIn}/>

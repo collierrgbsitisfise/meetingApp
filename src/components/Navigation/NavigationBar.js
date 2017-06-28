@@ -61,6 +61,7 @@ class NavigationBar extends React.Component {
         return (
             <ul className="nav navbar-nav">
                 <li><Link to="/">About</Link></li>
+                <li><Link to="my-profile">My Profile</Link></li>
                 <li><Link to="create-meeting">Create New Meeting</Link></li>
                 <li><Link to="find-meeting">Find Meeting</Link></li>
             </ul>
