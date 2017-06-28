@@ -44,9 +44,32 @@ const VerifyIfExistAlready = (body) => {
     })
 };
 
-/**
+module.exports.getUserInfoByIdHandler = function getUserInfoByIdHandler (req, res) {
+    
+    try {
+        
+        User.findOne({_id: req.UserInfo._doc._id}, (err, user) => {
+        
+            if (err) {
+                console.log('I am in ERRROR')
+                res.status(403).send({error: true, msg: 'can not be loaded info'});
+                return;
+            }
+        
+            res.send(user);
+        })
+    
+    } catch (e) {
+
+        res.status(403).send({error: true, msg: 'sorry we have internal error'});
+    
+    }
+
+}
+
+/** 
  * Parse token with info , add user in db
- * @param req.body.token {String}
+ * @param {String} req.body.token
  * @return 
  */
 module.exports.createAccountHandler = function createAccountHandler (req, res) {

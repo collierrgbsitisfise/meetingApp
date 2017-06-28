@@ -36,6 +36,7 @@ app.use(function (req, res, next) {
 app.post('/sende-email-confirm', UserCtrl.SendEmailConfirmSingUp);
 app.post('/create-acc', UserCtrl.createAccountHandler);
 app.post('/signin-user', UserCtrl.signInUserHandler);
+app.get('/get-user-info', parseToken, UserCtrl.getUserInfoByIdHandler);
 
 /*verify Token*/
 app.post('/verify-token', TokenService.isValidTokenHandler);
