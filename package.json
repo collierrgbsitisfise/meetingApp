@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "classnames": "^2.2.5",
+    "form-data": "^2.2.0",
     "google-map-react": "^0.24.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.10.7",

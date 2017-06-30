@@ -46,5 +46,12 @@ app.post('/meeting/add', parseToken, meetingCtrl.addEventMeetingHandler);
 
 /*goole API requests*/
 app.post('/getphoto/location', googleAPI.getPhotoByLocationHandler);
+
+app.post('/upload-avatar', (req, res) => {
+    console.log('it is file');
+    console.log(req.body);
+    res.send('file ok');
+});
+
 /*Start server*/
 app.listen(8080, () => console.log('server successfuly do it ^_^'));
